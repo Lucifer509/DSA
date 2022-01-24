@@ -1,41 +1,38 @@
 // Time complexity : O(n^2).
 // best case : O(n);
 // worst case : O(n*n);
-// in selectionSort we find min value than pace is at start of the array
+// in insertionSort we take a key and then compare it with elemnt before key position and insert it at desire place
 #include<bits/stdc++.h>
 using namespace std;
 
-void swap(int *x,int *y){
-    int temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
-void selectionSort(int arr[],int size)
-{   
-    int i,j,min;
-    for(i=0;i<size-1;i++){
-        min = i;
-        for(j=i+1;j<size;j++)
-            if(arr[j]<arr[min])
-                min = j;
-        
-        swap(&arr[min],&arr[i]);
+void insertionSort(int arr[],int n){
+    int i,j,key;
+    for(i =1;i<n;i++){
+        key = arr[i];
+        j= i-1;
+        while(j>=0 && arr[j]>key)
+        {
+            arr[j+1] = arr[j];
+            j = j-1;
+        }
+        arr[j+1] = key;
     }
-    
 }
 
-void printArray(int arr[],int n){
+printArray(int arr[], int n)
+{
     for(int i=0;i<n;i++){
         cout<<arr[i]<<" ";
     }
-    cout<<endl;
+    cout<< endl;
 }
 
-int main(){
-    int arr[] = {2,4,1,9,8,6,7,5,3};
+int main()
+{
+    int arr[] = {9,6,7,8,2,3,5,1,4};
     int n = sizeof(arr)/sizeof(arr[0]);
-    selectionSort(arr,n);
+
+    insertionSort(arr,n);
     printArray(arr,n);
     return 0;
 }
